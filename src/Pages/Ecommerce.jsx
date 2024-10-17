@@ -11,9 +11,10 @@ const Ecommerce = () => {
                     <img src="./logo.png" alt="logo" style={{height: "45px"}}/>    
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Shop</Nav.Link>
+                        <Nav.Link href="#home">Shop</Nav.Link> 
                         <Nav.Link href="#link">Blog</Nav.Link>
                         <Nav.Link href="#link">Contact Us</Nav.Link>
                         <Nav.Link href="#link">About Us</Nav.Link>

@@ -3,7 +3,7 @@ import { Col, Container, Image, Row, Stack } from 'react-bootstrap'
 
 // state => an object, handle component data
 
-const Grid = () => {
+const Grid = () => { this 
     return (
         <Container fluid>
             <Row>
