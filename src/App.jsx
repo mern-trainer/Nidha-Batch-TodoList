@@ -1,29 +1,14 @@
-
-import { createContext, Fragment, useState } from "react"
-import Ecommerce from "./Pages/Ecommerce"
-import Grid from "./Components/Grid"
-import LearnState from "./Components/state"
-import A from "./Components/A"
-// import Carousel from "react-bootstrap/Carousel"
-import Context from "./Pages/context"
-
-export const CounterContext = createContext()
+import ShopPage from "./Pages/ShopPage"
+import { CartProvider } from "./Providers/CartProvider"
+import { CounterProvider } from "./Providers/CounterProvider"
 
 const App = () => {
 
-    const [counter, setCounter] = useState(0)
-
-    const contextValues = {
-        counter, setCounter
-    }
-
-    return <CounterContext.Provider value={contextValues}>
-        {/* <Ecommerce /> */}
-        {/* <Grid /> */}
-        {/* <LearnState /> */}
-        <Context />
-        {/* <A /> */}
-    </CounterContext.Provider>
+    return <CounterProvider>
+        <CartProvider>
+            <ShopPage />
+        </CartProvider>
+    </CounterProvider>
 }
 
 export default App

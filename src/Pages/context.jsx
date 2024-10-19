@@ -3,17 +3,20 @@
 // 2. create states
 // 3. useContext()
 
-import { useContext } from "react"
-import { CounterContext } from "../App"
+import { useCounter } from "../Providers/CounterProvider"
+
 
 const Context = () => {
 
-    const { counter, setCounter } = useContext(CounterContext)
+    const { counter, setCounter } = useCounter()
 
     return (
-        <div className="d-flex justify-content-center mt-5">
+        <div className="d-flex align-items-center gap-3 mt-5 flex-column">
             <div>{counter}</div>
-            <button onClick={() => setCounter(counter + 1)}>Increment</button>
+            <div className="d-flex gap-3 justify-content-center">
+                <button onClick={() => setCounter(counter + 1)} className="btn btn-primary rounded">Increment</button>
+                <button onClick={() => setCounter(counter - 1)} className="btn btn-danger rounded">Decrement</button>
+            </div>
         </div>
     )
 }
