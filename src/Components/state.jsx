@@ -59,12 +59,14 @@ const LearnState = () => {
             todoList={todoList}
             handleRemove={handleRemove}
             handleStatus={handleStatus}
+            setTodoList={setTodoList}
         /> 
         <TaskList
             type={"Completed"}
             todoList={todoList}
             handleRemove={handleRemove}
             handleStatus={handleStatus}
+            setTodoList={setTodoList}
         />
     </Fragment>
 }
