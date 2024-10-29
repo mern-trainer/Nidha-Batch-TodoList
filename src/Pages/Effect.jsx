@@ -3,9 +3,9 @@
 
 import { useEffect, useState } from "react"
 
-// Mounting => After the initial load => api calling
-// Updating => Changes in states, props
-// Unmounting => before removing from DOM
+// Mounting => Called after first render, the components DOM is now available
+// Updating => Called after the component has updated
+// Unmounting => Called before the component is removed from the DOM
 
 const Effect = () => {
 
