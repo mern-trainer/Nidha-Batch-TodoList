@@ -1,4 +1,6 @@
 import LearnState from "./Components/state"
+import Effect from "./Pages/Effect"
+import Form from "./Pages/Form"
 // import TaskList from "./Components/TaskList"
 import ShopPage from "./Pages/ShopPage"
 import { CartProvider } from "./Providers/CartProvider"
@@ -9,7 +11,9 @@ const App = () => {
     return <CounterProvider>
         <CartProvider>
             {/* <ShopPage /> */}
-            <LearnState />
+            {/* <LearnState /> */}
+            {/* <Effect /> */}
+            <Form />
         </CartProvider>
     </CounterProvider>
 }
