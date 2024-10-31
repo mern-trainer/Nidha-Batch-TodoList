@@ -30,10 +30,6 @@ const Effect = () => {
         <div>
             <button onClick={() => {
                 setCount((counter) => counter + 1)
-                // setCounter((counter) => counter + 1)
-                // setCounter((counter) => counter + 1)
-                // setCounter((counter) => counter + 1)
-                // setCounter((counter) => counter + 1)
             }}>Update</button>
         </div>
     </div>

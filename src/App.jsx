@@ -1,4 +1,5 @@
 import LearnState from "./Components/state"
+import ApiCall from "./Pages/ApiCall"
 import Effect from "./Pages/Effect"
 import Form from "./Pages/Form"
 // import TaskList from "./Components/TaskList"
@@ -13,7 +14,8 @@ const App = () => {
             {/* <ShopPage /> */}
             {/* <LearnState /> */}
             {/* <Effect /> */}
-            <Form />
+            {/* <Form /> */}
+            <ApiCall />
         </CartProvider>
     </CounterProvider>
 }
