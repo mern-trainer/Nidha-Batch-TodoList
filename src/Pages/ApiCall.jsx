@@ -7,12 +7,19 @@ const ApiCall = () => {
     const [products, setProducts] = useState([])
     const [searchText, setSearchText] = useState("")
     const [isLoading, setLoading] = useState(true)
+    const [pages, setPages] = useState(-1)
+    const [currentPage, setCurrentPage] = useState(1)
 
     // IIFE
 
     const getData = async () => {
-        const response = await fetch(`https://dummyjson.com/products`)
+        const limit = 20
+        const skip = (currentPage - 1) * 20
+        const response = await fetch(`https://dummyjson.com/products?skip=${skip}&limit=${limit}`)
         const res = await response.json()
+        if (pages == -1) {
+            setPages(Math.ceil(res.total / limit))
+        }
         const filteredProducts = res.products.filter(product => product.title.toLowerCase().includes(searchText.toLowerCase()))
         setProducts(filteredProducts)
         setLoading(false)
@@ -31,7 +38,7 @@ const ApiCall = () => {
         return () => {
             clearTimeout(timeOut)
         }
-    }, [searchText])
+    }, [searchText, currentPage])
     
     return <div>
         <div className="my-2 d-flex justify-content-center">
@@ -52,6 +59,13 @@ const ApiCall = () => {
             }
             {
                 isLoading && "Loading..."
+            }
+        </div>
+        <div className="my-3 d-flex gap-3 justify-content-center">
+            {
+                pages > -1 && new Array(pages).fill(0).map((_, index) => index + 1).map(label => {
+                    return <button className="bg-success border-0 rounded-circle text-light" style={{width: "30px", height: "30px"}} key={label} onClick={() => setCurrentPage(label)}>{label}</button>
+                })
             }
         </div>
     </div>
