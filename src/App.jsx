@@ -1,23 +1,22 @@
-import LearnState from "./Components/state"
 import ApiCall from "./Pages/ApiCall"
 import Effect from "./Pages/Effect"
-import Form from "./Pages/Form"
-// import TaskList from "./Components/TaskList"
-import ShopPage from "./Pages/ShopPage"
-import { CartProvider } from "./Providers/CartProvider"
-import { CounterProvider } from "./Providers/CounterProvider"
+import LearnState from "./Components/state"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import A from "./Pages/A"
+import B from "./Pages/B"
 
 const App = () => {
 
-    return <CounterProvider>
-        <CartProvider>
-            {/* <ShopPage /> */}
-            {/* <LearnState /> */}
-            {/* <Effect /> */}
-            {/* <Form /> */}
-            <ApiCall />
-        </CartProvider>
-    </CounterProvider>
+    return <BrowserRouter>
+        <Routes>
+            <Route path="/effect" Component={Effect} />
+            <Route path="/ecommerce" Component={ApiCall} />
+            <Route path="/todo" Component={LearnState} />
+
+            <Route path="/a" Component={A} />
+            <Route path="/b" Component={B} />
+        </Routes>
+    </BrowserRouter>
 }
 
 export default App

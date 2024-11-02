@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useEffect, useState } from "react"
+import { api } from "../axios";
 
 let mounted = false;
 
@@ -15,8 +17,8 @@ const ApiCall = () => {
     const getData = async () => {
         const limit = 20
         const skip = (currentPage - 1) * 20
-        const response = await fetch(`https://dummyjson.com/products?skip=${skip}&limit=${limit}`)
-        const res = await response.json()
+        const response = await api.get(`?skip=${skip}&limit=${limit}`)
+        const res = response.data
         if (pages == -1) {
             setPages(Math.ceil(res.total / limit))
         }
