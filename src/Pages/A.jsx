@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const A = () => {
+
+    const redirect = useNavigate()
+
     return <div>
-        <Link to="/b">GO TO B</Link>
+        <button onClick={() => redirect("/b")}>GO TO B</button>
     </div>
 }
 

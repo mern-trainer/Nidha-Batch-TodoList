@@ -1,8 +1,19 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const B = () => {
+
+    const redirect = useNavigate()
+
+    const handleNavigate = type => {
+        if (type == 0) {
+            alert("Type is 0")
+        } else {
+            redirect("/a")
+        }
+    }
+
     return <div>
-        <Link to="/a">GO TO A</Link>
+        <button onClick={() => handleNavigate(1)}>Go To A</button>
     </div>
 }
 
