@@ -5,14 +5,18 @@ import "./index.css"
 import { Toaster } from 'react-hot-toast';
 import { CounterProvider } from './Providers/CounterProvider.jsx';
 import { CartProvider } from './Providers/CartProvider.jsx';
+import { Provider } from 'react-redux';
+import { store } from './Redux/Store.js';
 
 const root = createRoot(document.getElementById("root"))
 
 root.render(
-    <CounterProvider>
-        <CartProvider>
-            <App />
-            <Toaster position="top-right"/>
-        </CartProvider>
-    </CounterProvider>
+    <Provider store={store}>
+        <CounterProvider>
+            <CartProvider>
+                <App />
+                <Toaster position="top-right"/>
+            </CartProvider>
+        </CounterProvider>
+    </Provider>
 )

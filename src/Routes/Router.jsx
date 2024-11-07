@@ -6,6 +6,7 @@ import ProfileUpdate from '../Pages/ProfileUpdate'
 import PasswordUpdate from '../Pages/PasswordUpdate'
 import Formik from '../Components/Formik'
 import Formik2 from '../Components/Formik2'
+import Redux from '../Pages/Redux'
 
 const Router = () => {
     return <BrowserRouter>
@@ -20,6 +21,7 @@ const Router = () => {
             <Route path="/">
                 <Route path="" Component={LearnState} />
                 <Route path='/formik1' Component={Formik} />
+                <Route path="/redux" Component={Redux} />
                 <Route path='/formik2' Component={Formik2} />
                 <Route path="settings">
                     <Route path="" Component={Effect} />
