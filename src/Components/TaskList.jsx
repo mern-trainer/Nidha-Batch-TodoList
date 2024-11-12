@@ -3,35 +3,35 @@ import { FaCircleCheck } from "react-icons/fa6"
 import Modal from "./Modal"
 import { Fragment, useState } from "react"
 import toast from "react-hot-toast"
+import { update } from "../Redux/todoSlice"
+import { useDispatch, useSelector } from "react-redux"
 
-const TaskList = ({ type, todoList, setTodoList, handleStatus, handleRemove }) => { // type Completed, Pending
+const TaskList = ({ type, handleStatus, handleRemove }) => { // type Completed, Pending
     
+    const { todoList } = useSelector(state => state.todo)
+
     const [openedModal, setOpenedModal] = useState(null)
 
     // if (openedModal) {
     //     return "Hi"
     // }
 
+    const dispatch = useDispatch()
+
     const [editText, setEditText] = useState("")
     const [editableItem, setEditableItem] = useState("")
 
     const handleEdit = (item) => {
-        setEditText(item.task)
+        setEditText(item.title)
         setEditableItem(item)
     }
 
     const handleUpdate = (item) => {
-        const exist = todoList.find(todo => editText.trim() == todo.task && todo.id != item.id)
+        const exist = todoList.find(todo => editText.trim() == todo.title && todo.id != item.id)
         if (exist) {
             return toast.error("Already exist")
         }
-        const res = todoList.map(todo => {
-            if (todo.id == item.id) {
-                return { ...todo, task: editText.trim() }
-            }
-            return todo
-        })
-        setTodoList(res)
+        dispatch(update({id: item.id, title: editText.trim()}))
         setEditText("")
         setEditableItem("")
     }
@@ -47,7 +47,7 @@ const TaskList = ({ type, todoList, setTodoList, handleStatus, handleRemove }) =
                         <div>TASK: {editableItem.id == todo.id ? <Fragment>
                             <input type="text" value={editText} onChange={(event) => setEditText(event.target.value)} />
                             <button onClick={() => handleUpdate(todo)}>Update</button>
-                        </Fragment> : todo.task}</div>
+                        </Fragment> : todo.title}</div>
                         <div>STATUS: {todo.status}</div>
                         
                     </div>

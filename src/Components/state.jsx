@@ -3,29 +3,34 @@ import toast from "react-hot-toast"
 import { v4 as uuidv4 } from "uuid"
 import { FaCircleCheck, FaTrash } from "react-icons/fa6";
 import TaskList from "./TaskList";
+import { useDispatch, useSelector } from "react-redux";
+import { addToList, remove, update, updateStatus } from "../Redux/todoSlice";
 
 const LearnState = () => {
     
-    const [todoList, setTodoList] = useState([])
-    const [todo, setTodo] = useState("") 
+    const { todoList } = useSelector(state => state.todo)
+
+    const [todo, setTodo] = useState("")
+
+    const dispatch = useDispatch()
 
     const handleAddTask = () => {
         if(todo == ""){
             return toast.error("Task is required!")
         }
-        const index = todoList.findIndex(element => element.task.toLowerCase() == todo.toLowerCase())
+        const index = todoList.findIndex(element => element.title.toLowerCase() == todo.toLowerCase())
         if (index > -1) {
             return toast.error("Task already exist")
         }
         const currentDate = new Date().toLocaleString("en-IN").toUpperCase()
         const taskObject = {
             id: uuidv4(),
-            task: todo,
+            title: todo,
             status: "Pending",
             createdAt: currentDate,
             updatedAt: currentDate
         }
-        setTodoList([taskObject, ...todoList])
+        dispatch(addToList(taskObject))
         setTodo("")
     }
 
@@ -34,19 +39,12 @@ const LearnState = () => {
     }
 
     const handleRemove = (id) => {
-        const res = todoList.filter(todo => todo.id != id)
-        setTodoList(res)
+        dispatch(remove({ id }))
         return toast.success("Task removed")
     }
 
     const handleStatus = (id) => {
-        const res = todoList.map(todo => {
-            if (todo.id == id) {
-                return {...todo, status: todo.status == "Pending" ? "Completed" : "Pending"}
-            }
-            return todo
-        })
-        setTodoList(res)
+        dispatch(updateStatus({ id }))
     }
 
     return <Fragment>
@@ -56,17 +54,13 @@ const LearnState = () => {
         </div>
         <TaskList
             type={"Pending"}
-            todoList={todoList}
             handleRemove={handleRemove}
             handleStatus={handleStatus}
-            setTodoList={setTodoList}
         /> 
         <TaskList
             type={"Completed"}
-            todoList={todoList}
             handleRemove={handleRemove}
             handleStatus={handleStatus}
-            setTodoList={setTodoList}
         />
     </Fragment>
 }

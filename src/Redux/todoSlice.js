@@ -18,10 +18,29 @@ const todoSlice = createSlice({
         },
         update: (state, action) => {
             // {id: xxxxxxxxx, title: "xxxxxxxxxxxxx"}
-
+            const { id, title } = action.payload
+            console.log(action.payload)
+            const dateTime = new Date().toLocaleString("en-IN")
+            state.todoList = state.todoList.map(item => {
+                if (item.id == id) {
+                    return { ...item, title: title, updatedAt: dateTime }
+                }
+                return item
+            })
+        },
+        updateStatus: (state, action) => {
+            // {id: xxxxxxxxx}
+            const { id } = action.payload
+            const dateTime = new Date().toLocaleString("en-IN")
+            state.todoList = state.todoList.map(item => {
+                if (item.id == id) {
+                    return { ...item, updatedAt: dateTime, status: item.status == "Pending" ? "Completed" : "Pending" }
+                }
+                return item
+            })
         }
     }
 })
 
-export const { addToList, remove, update } = todoSlice.actions
+export const { addToList, remove, update, updateStatus } = todoSlice.actions
 export const { reducer: todoReducer } = todoSlice
